@@ -4,6 +4,8 @@ This is a todo website that renders schedules on a slideable timetable, similar 
 
 ## Get started
 
+Ensure you have >= python 3.6.4 installed
+
 Install the dependencies...
 
 ```bash
