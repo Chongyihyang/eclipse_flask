@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <title>Create a New Post</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}">
+    <link rel="stylesheet" href="./styles.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'prism.css')}}">
+    <script src="{{url_for('static', filename = 'prism.js')}}"></script>
+    <script src="{{url_for('static', filename = 'tinymce.min.js')}}"></script>
+    <script src="{{url_for('static', filename = 'navbar.js')}}"></script>
+    <script>
+        tinymce.init({
+            selector: '#myTextarea',
+            plugins: ['codesample',  'code', 'lists', 'link', 'table'],
+            codesample_languages: [
+                {text: 'HTML/XML', value: 'markup'},
+                {text: 'JavaScript', value: 'javascript'},
+                {text: 'CSS', value: 'css'},
+                {text: 'Python', value: 'python'},
+                {text: 'bash', value: 'bash' },
+                {text: 'C', value: 'c'},
+                {text: 'C++', value: 'cpp'},
+                {text: 'Rust', value: 'rust'},
+            ],
+            default_link_target: '_blank',
+            link_assume_external_targets: true,
+            toolbar: ['codesample code numlist bullist link table'],
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+    </script>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href = "{{url_for('root')}}" class = "Main_link">
+                <img class = "Main_img" src="{{url_for('static', filename = 'Main_link.png')}}">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <img src="{{url_for('static', filename = 'x.svg')}}" class="fa" onclick="hideMenu()" id="hamburger"></img>
+                <ul>
+                    {% if rank == 'ADMIN' %}
+                    <li><a href = "{{url_for('form')}}" class = "form">New Post</a></li>
+                    {% endif %}         
+
+                    {% if user != None %}
+                    <li><a href = "{{url_for('logout')}}" class = "account">Log out</a></li>
+                    {% else %}
+                    <li><a href = "{{url_for('login')}}" class = "account">Log in</a></li>
+                    {% endif %} 
+                    <li class="dropdown">
+                        <button onclick="show_hide()" class="button">Posts</button>
+                        <!-- dropdown list items will show when we click the drop button -->
+                        <div id ="list-items">
+                            {% for item in flairs%}
+                        <a href="{{url_for('find_flair', search_item = item[0])}}"> {{item[0]}} </a>
+                        {% endfor %}
+                        </div>
+                    </li>
+                    <li>
+                        <form action="{{url_for('find_post')}}" method = "POST" class = "search_box">
+                            <input type="text" placeholder="Search.." class="search" name="search">
+                            <input type="submit" class="submit_button">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <img src="{{url_for('static', filename = 'layout-sidebar.svg')}}" class="fa" onclick="showMenu()" id="hamburger"></img>
+        </nav>
+        <div class = "form">
+            <form action="{{url_for('save')}}" method = "POST" enctype="multipart/form-data">
+                <input type="text" name="title" id="" placeholder="Some title..."  size="25">
+
+                <label> 
+                    <input list="flairs" name="flair" placeholder="Flair.."/>
+                </label>
+                <datalist id="flairs">
+                    {% for item in flairs %}
+                    <option value="{{item[0]}}">
+                    {% endfor %}
+                </datalist><br><br>
+                <div class="add_flair_input">
+                    <input type="text" name="add_flair" size="15" class="add_flair" placeholder="add flair name..."><br><br>
+                </div>
+                <textarea name="description" cols="30" rows="4" placeholder="Type some description" id="myTextarea" cols="100" rows ='50'></textarea>
+                <p>Files: <input type="file" name="file1" id="" multiple></p>
+                <p>Insert new thumbnail: <input type="file" name="thumb" id=""></p>
+                <input type="submit">
+            </form>          
+        </div>
+    </section> 
+</body>
+</html>

@@ -1,0 +1,531 @@
+/* general */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: "JetBrains Mono", monospace;
+}
+
+
+img {
+    max-width: 700px;
+    height: auto;
+}
+
+a:link {
+    color: rgb(142, 157, 255);
+    background-color: transparent;
+    text-decoration: none;
+    text-decoration: underline;
+}
+  
+a:visited {
+    color: rgb(174, 84, 99);
+    background-color: transparent;
+    text-decoration: none;
+    text-decoration: underline;
+}
+  
+
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("./bg.png");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+}
+
+
+
+
+
+/* nav bar */
+nav .fa{
+    display: none;
+}
+
+nav{
+    display: flex;
+    padding:  2% 6%;
+    justify-content: space-between;
+    align-items: center;
+    height: 3vh;
+}
+
+nav img{
+    position: relative;
+    height: 5vh;
+    width: 100%;   
+    float: left;
+}
+nav img:hover {
+    background-color: #ddd;
+    color: black;
+    height: 5vh;
+    width: 100%;  
+}
+
+.nav-links{
+    flex: 1; /* occupies all the space in the row */
+    text-align: right; 
+}
+
+.search{
+    height: 4vh;
+    font-size: 3vh;
+}
+
+.submit_button{
+    font-size: 3vh;
+}
+
+.nav-links ul li{
+    margin-left: 7px;
+    margin-right: 7px;
+    list-style: none;
+    display: inline-block;
+    padding: 0.28vh 0.42vw;
+    position: relative;
+}
+
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 3vh;
+}
+
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #f44336;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+
+
+/*position of dropdown */
+.dropdown {
+    text-decoration: none;
+    display: none;
+    position: relative;
+}
+
+/* set the size and position of button on web */
+.button {
+    border: none;
+    color: white;
+    background: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3vh;
+}
+
+/* provide css to background of list items */
+#list-items {
+    left: 50%;
+    right: auto;
+    text-align: center;
+    transform: translate(-50%, 0);
+    border-radius: 2px;
+    display: none;
+    background-color: #333;
+    width: 60px;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+/* provide css to list items */
+#list-items a {
+    display: block;
+    font-size: 15px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+#list-items a:hover {
+    display: block;
+    font-size: 15px;
+    color: #333;
+    background-color: #f44336;
+    text-decoration: none;
+    text-align: center;
+}     
+
+
+        
+
+/* index.html */
+
+/* typewriter*/
+
+/* Global */
+.typewriter{
+    font-family: 'Anonymous Pro', monospace; 
+    overflow: hidden;
+    position: relative;
+    padding: 4em;
+    padding-bottom: 0px;
+    padding-top: 10vh;
+    white-space: nowrap;
+    color: rgba(201, 187, 187, 0.75);
+    background-color: none;  
+}
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 7vh;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 3s steps(20) 1s 1 normal both,
+             blinkTextCursor 1000ms steps(20) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 12.4em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+.one_img {
+    display: inline-block;
+    left: 30px;
+    max-width: 29vh;
+    max-height: 35vh;
+    min-width:28vh;
+}
+
+.two_img{
+    display: inline-block;
+    left: 30px;
+    max-width: 29vh;
+    max-height: 35vh;
+    min-width:28vh;
+}
+
+.three_img{
+    display: inline-block;
+    left: 30px;
+    max-width: 29vh;
+    max-height: 35vh;
+    min-width:28vh;
+}
+
+a.one{
+    color: #f2f2f2;
+}
+
+a.two{
+    color: rgb(37, 111, 190);
+}
+
+a.three{
+    color: red;
+}
+
+p{
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+div.container {
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
+    margin-top: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    border: 3px;
+    border-bottom: 0;
+    font-size: 3vh;
+}
+
+div.container > div {
+    width: 30vw;
+    height: 50vh;
+    border: 2px #333;
+    background-color: #333;
+    border-radius: 10px;
+    margin: 2%; 
+    object-fit: cover;
+}
+
+    
+
+
+/* show.html */
+
+div.show{
+    border: 2px #333;
+    background-color: #333;
+    border-radius: 10px;
+    color: wheat;
+    padding: 10px;
+    margin: 100px;    
+    margin-top: 20px;      
+    margin-bottom:  0px; 
+}
+
+
+.mySlides {
+    display: none;
+    width: 70vw;
+    height: 80vh;
+    object-fit:scale-down;
+    background: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* form.html */
+
+div.add_flair_input {
+    display: none;
+}
+
+#add_flair{
+    margin-left: 100px;
+}
+
+div.form {
+    border: 2px #333;
+    background-color: #333;
+    border-radius: 10px;
+    color: wheat;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 100px;  
+    margin-right: 100px;
+}
+
+h1.showTitle {
+    margin-left : 10px;
+    margin-bottom:  15px;
+}
+
+p.timestamp {
+    margin: 10px;   
+}
+
+/* findpost.html */
+
+h1.find_page {
+    margin-left: 10px;
+    color:  white;
+}
+
+/* login.html */
+
+div.form_login {
+    border: 2px #333;
+    background-color: #333;
+    border-radius: 10px;
+    color: wheat;
+    padding: 10px;
+    margin: 100px;  
+}
+
+div.form_login_phone {
+    display: none;
+}
+
+
+@media (max-width: 846px) {
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .header{
+        min-height: 100vh;
+        width: 100%;
+        background: rgb(8, 12, 70);
+    }
+
+    .nav-links ul li{
+        display: flex;
+    }
+
+    .nav-links{
+        position: absolute;
+        background: #f44336;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+
+    .nav-links ul li a{
+        font-size: 20px;
+    }
+
+    #list-items{
+        left: 25%;
+        top: 30px;
+    }
+
+    .button{
+        font-size: 20px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    .search{
+        order: 1;
+        font-size: 20px;
+    }
+
+    nav .fa{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    img {
+        max-width: 250px;
+        height: auto;
+    }
+
+    .Main_img {
+        margin-top: 30px;
+    }
+
+    #hamburger{
+        margin-top: 32px;
+        height: 20px;
+        width: auto;
+        color: white;
+    }
+
+    .nav-links ul{
+        padding: 30px;
+    }
+
+    .search {
+        width: 100px;
+    }
+
+    .submit_button {
+        display: none;
+    }
+
+    .typewriter{
+        padding-top: 40px;
+    }
+
+    .line-1{
+        font-family: 'Anonymous Pro', monospace;  
+        font-size: 100%;
+    }
+    
+    .anim-typewriter{
+        animation: typewriter 4s steps(19) 1s 0.905 normal both,
+                   blinkTextCursor 1000ms steps(19) infinite normal;
+      }
+
+    div.show{
+        margin-top: 50px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    #add_flair{
+        margin-left: 20px;
+    }
+
+    div.form{
+        margin: 20px;
+    }
+
+
+    div.form > textarea{
+        columns: 15;
+    }
+
+    div.form_login_phone {
+        display: inline-block;
+        max-width: 300px;
+        border: 2px #333;
+        background-color: #333;
+        border-radius: 10px;
+        color: wheat;
+        padding: 10px;
+        margin: 20px;  
+    }
+    
+    div.form_login {
+        display: none;
+    }
+
+    div.container {
+        margin-top: 10px;
+        position: relative;
+        display: flex;                  /* establish flex container */
+        flex-direction: column;            /* default value; can be omitted */
+        align-items: flex-start;
+        justify-content: space-between; /* switched from default (flex-start, see below) */
+        text-align: center;
+    }
+
+    div.container > div {
+        flex-direction: column;
+        width: 100%;
+        height: 270px;
+        border: 2px #333;
+        background-color: #333;
+        border-radius: 10px;
+        height: 30vh;
+    }
+
+    .one_img{
+        display: inline-block;
+        max-height: 150px;
+        min-width: 0;
+    }
+    
+    .two_img{
+        display: inline-block;
+        max-height: 150px;
+        min-width: 0;
+    }
+    
+    .three_img{
+        display: inline-block;
+        max-height: 150px;
+        min-width: 0;
+        border-bottom: 10px;
+    }
+
+    .mySlides{
+        width: 320px;
+        height: 200px;
+    }
+
+}

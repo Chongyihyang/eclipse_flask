@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eclipse_CYY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="{{url_for('static', filename = 'navbar.js')}}"></script>
+</head>
+<body>
+    
+    <section class="header">
+        <nav>
+            <a href = "{{url_for('root')}}" class = "Main_link">
+                <img class = "Main_img" src="{{url_for('static', filename = 'Main_link.png')}}">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <img src="{{url_for('static', filename = 'x.svg')}}" class="fa" onclick="hideMenu()" id="hamburger"></img>
+                <ul>
+
+
+                    {% if rank == 'ADMIN' %}
+                    <li><a href = "{{url_for('form')}}" class = "form">New Post</a></li>
+                    {% endif %}         
+
+                    {% if user != None %}
+                    <li><a href = "{{url_for('logout')}}" class = "account">Log out</a></li>
+                    {% else %}
+                    <li><a href = "{{url_for('login')}}" class = "account">Log in</a></li>
+                    {% endif %} 
+
+                    
+                    <li class="dropdown">
+                        <button onclick="show_hide()" class="button">Posts</button>
+                        <!-- dropdown list items will show when we click the drop button -->
+                        <div id ="list-items">
+                            {% for item in flairs%}
+                        <a href="{{url_for('find_flair', search_item = item[0])}}"> {{item[0]}} </a>
+                        {% endfor %}
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <form action="{{url_for('find_post')}}" method = "POST" class = "search_box">
+                            <input type="text" placeholder="Search.." class="search" name="search">
+                            <input type="submit" class="submit_button">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <img src="{{url_for('static', filename = 'layout-sidebar.svg')}}" class="fa" onclick="showMenu()" id="hamburger"></img>
+        </nav>
+        <div class="typewriter">
+            <p class="line-1 anim-typewriter">&nbsp;Welcome to EclipseYY</p>
+        </div>
+        <div class="container">
+            <div id="st-box">
+                {% if post1 != None %}
+                <a href="/post/{{post1[0]}}" class = "one">
+                <p>{{post1[1]}}</p><br><img class = "one_img" src="static/{{post1[6]}}"></a><br>
+                {% else %}
+                No posts as of now
+                {% endif %}
+            </div>  
+            <div id="nd-box">
+                {% if post2 != None %}
+                <a href="/post/{{post2[0]}}" class = "two">
+                <p>{{post2[1]}}</p><br><img class = "two_img" src="static/{{post2[6]}}"></a><br>
+                {% else %}
+                No posts as of now
+                {% endif %}
+            </div>
+            <div id="rd-box">
+                {% if post3 != None %}
+                <a href="/post/{{post3[0]}}" class = "three">
+                <p>{{post3[1]}}</p><br><img class = "three_img" src="static/{{post3[6]}}"></a><br>
+                {% else %}
+                No posts as of now
+                {% endif %}
+            </div>
+        </div>
+    </section>  
+</body>
+</html>

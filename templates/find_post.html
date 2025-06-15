@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{search_item}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'styles.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <link rel="stylesheet" href="./styles.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'prism.css')}}">
+    <script src="{{url_for('static', filename = 'prism.js')}}"></script>
+    <script src="{{url_for('static', filename = 'navbar.js')}}"></script>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href = "{{url_for('root')}}" class = "Main_link">
+                <img class = "Main_img" src="{{url_for('static', filename = 'Main_link.png')}}">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <img src="{{url_for('static', filename = 'x.svg')}}" class="fa" onclick="hideMenu()" id="hamburger"></img>
+                <ul>
+                    {% if rank == 'ADMIN' %}
+                    <li><a href = "{{url_for('form')}}" class = "form">New Post</a></li>
+                    {% endif %}         
+
+                    {% if user != None %}
+                    <li><a href = "{{url_for('logout')}}" class = "account">Log out</a></li>
+                    {% else %}
+                    <li><a href = "{{url_for('login')}}" class = "account">Log in</a></li>
+                    {% endif %} 
+                    <li class="dropdown">
+                        <button onclick="show_hide()" class="button">Posts</button>
+                        <!-- dropdown list items will show when we click the drop button -->
+                        <div id ="list-items">
+                            {% for item in flairs%}
+                        <a href="{{url_for('find_flair', search_item = item[0])}}"> {{item[0]}} </a>
+                        {% endfor %}
+                        </div>
+                    </li>
+                    <li>
+                        <form action="{{url_for('find_post')}}" method = "POST" class = "search_box">
+                            <input type="text" placeholder="Search.." class="search" name="search">
+                            <input type="submit" class="submit_button">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <img src="{{url_for('static', filename = 'layout-sidebar.svg')}}" class="fa" onclick="showMenu()" id="hamburger"></img>
+        </nav>
+        <h1 class = "find_page">Search items: </h1>
+        <div class = "show">
+            {% if indexes != [] %}
+                {% for items in indexes %}
+                    <a href="{{url_for('show', Number = items[0])}}" class = "link"><h2>{{items[1]}}</h2></a><br>
+                {% endfor %}
+            {% else %}
+                <h3>No such posts on {{search_item}}</h3>
+            {% endif %}
+        </div>
+    </section>
+</body>
+</html>
