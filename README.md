@@ -11,7 +11,10 @@ Install the dependencies...
 ```bash
 pip install virtualenv
 virtualenv venv
-source venv/bin/activate
+# In cmd.exe
+venv\Scripts\activate.bat
+# In PowerShell
+venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
